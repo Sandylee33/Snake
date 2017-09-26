@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+	public int maxSize;
+	public int currentSize;
+	public int xBound;
+	public int yBound;
+	public int score;
+	public GameObject foodPreab;
+	public GameObject currentFood;
 	public GameObject snakePrefab;
 	public Snake head;
 	public Snake tail;
 	public Vector2 nextPos;
 	public int direction;
+
+
+	void OnEnable()
+	{
+		Snake.hit += Hit;
+	}
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating ("TimerInvoke", 0, 0.5f);
+		FoodFunction ();
 	}
-	
+	void OnDisable()
+	{
+		Snake.hit -= Hit;
+	}
 	// Update is called once per frame
 	void Update () {
 		ChangeDirection ();
@@ -21,7 +38,13 @@ public class GameController : MonoBehaviour {
 
 	void TimerInvoke()
 	{
+		
 		Movement ();
+		if (currentSize >= maxSize) {
+			TailFunction ();
+		} else {
+			currentSize++;
+		}
 	}
 
 	void Movement()
@@ -68,5 +91,44 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	void TailFunction()
+	{
+		Snake tempSnake = tail;
+		tail = tail.GetNext ();
+		tempSnake.RemoveTail ();
+	}
+
+	void FoodFunction()
+	{
+		int xPos = Random.Range (-xBound, xBound);
+		int yPos = Random.Range (-yBound, yBound);
+	
+		currentFood = (GameObject)Instantiate (foodPreab, new Vector2 (xPos, yPos), transform.rotation);
+
+		StartCoroutine (CheckRender (currentFood));
+	}
+
+	IEnumerator CheckRender(GameObject IN)
+	{
+		yield return new WaitForEndOfFrame ();
+		if (IN.GetComponent<Renderer> ().isVisible == false) 
+		{
+			if (IN.tag == "food") 
+			{
+				Destroy (IN);
+				FoodFunction ();
+			}
+		}
+	}
+
+	void Hit(string WhatWasSent)
+	{
+		if (WhatWasSent == "food") 
+		{
+			FoodFunction ();
+			maxSize++;
+			score++;
+		}
+	}
 
 }
