@@ -5,16 +5,15 @@ using System;
 
 public class Snake: MonoBehaviour {
 
-	private Snake next;
+	public Snake next;
 	private Vector2 position;
 	static public Action<String> hit;
 
-	public void SetNext(Snake nextSnake, Vector2 nextPos)
+	public void SetNext(Snake next)
 	{
-		next = nextSnake;
-		position = nextPos;
+		this.next = next;
 	}
-
+	 
 	public Snake GetNext()
 	{
 		return next;
