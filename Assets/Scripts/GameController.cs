@@ -15,7 +15,7 @@ public class GameController : Singleton<GameController> {
 	public GameObject currentFood;
 	public GameObject snakePrefab;
 	public Snake head;
-	public Snake tail;
+	//public Snake tail;
 	public SnakeList snakeList;
 	public Vector2 nextPos;
 	public int direction;
@@ -29,7 +29,7 @@ public class GameController : Singleton<GameController> {
 	}
 	// Use this for initialization
 	void Start () {
-		//snakeList = new SnakeList (head);
+		snakeList = new SnakeList (head);
 		InvokeRepeating ("TimerInvoke", 0.001f, speed);
 		FoodFunction ();
 	}
@@ -74,7 +74,7 @@ public class GameController : Singleton<GameController> {
 			break;
 		}
 		temp = (GameObject)Instantiate (snakePrefab, nextPos, transform.rotation);
-		head.SetNext (temp.GetComponent<Snake>());
+		snakeList.SetNext (temp.GetComponent<Snake>());
 		head = temp.GetComponent<Snake> ();
 		return;
 	}
@@ -101,8 +101,8 @@ public class GameController : Singleton<GameController> {
 
 	void TailFunction()
 	{
-		Snake tempSnake = tail;
-		tail = tail.next;
+		Snake tempSnake = snakeList.head;
+		snakeList.head = snakeList.head.next;
 		Destroy (tempSnake.gameObject);		
 	}
 

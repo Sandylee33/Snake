@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Singleton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Snake.cs">
     <Files>
-      <File FileName="Assets/Scripts/Snake.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="105" Column="20" />
+      <File FileName="Assets/Scripts/Snake.cs" Line="12" Column="13" />
       <File FileName="Assets/Scripts/Singleton.cs" Line="27" Column="2" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="26" Column="17" />
-      <File FileName="Assets/Scripts/MainMenuController.cs" Line="11" Column="31" />
-      <File FileName="Assets/Scripts/UpdateUI.cs" Line="17" Column="60" />
+      <File FileName="Assets/Scripts/MainMenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UpdateUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SnakeList.cs" Line="25" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
