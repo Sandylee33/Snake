@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : Singleton<GameController> {
 
 	public int maxSize;
 	public int currentSize;
@@ -21,13 +21,15 @@ public class GameController : MonoBehaviour {
 	public Text scoreText;
 	public float speed = 0.5f;
 
+
+
 	void OnEnable()
 	{
 		Snake.hit += Hit;
 	}
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("TimerInvoke", 0, speed);
+		InvokeRepeating ("TimerInvoke", 0.001f, speed);
 		FoodFunction ();
 	}
 	void OnDisable()
